@@ -1,0 +1,125 @@
+<html lang="en" ng-app="myApp">
+<head>
+<title>Hello</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+
+<body>
+<script src="node_modules/bower_components/angular/angular.min.js"></script>
+<script src="node_modules/bower_components/ngstorage/ngStorage.min.js"></script>
+<script src="script.js"></script>
+
+<div ng-controller="myCtrl">
+
+</div>
+
+<br><br>
+
+<div ng-controller="Cart">
+
+
+    <div class="container" onload="loadData()">
+
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Add Product</div>
+                    <div class="panel-body">
+                        <form role="form">
+                            <label>Product name:<input type="text" class="form-control" ng-model="object.prod"></label>
+                            <label>Product Quantity:<input type="text" class="form-control" ng-model="object.qty"></label>
+                            <label>Product Price:<input type="text" class="form-control" ng-model="object.price"></label>
+                            <br><br>
+                                <button ng-click="saveData(object)" class="btn btn-warning">Save Data</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-9">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Temporary Cart </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                                <th>Remove</th>
+                            </tr>
+                            </thead>
+                            <tr ng-repeat="d in data">
+
+                                <td>{{d.pro_name}}</td>
+                                <td>{{d.qty}}</td>
+                                <td>{{d.price}}</td>
+                                <td>{{d.price * ob.qty}}</td>
+                                <td><button ng-click="removeData(d.pro_name)" class="btn btn-warning">Remove</button></td>
+                            </tr>
+                        </table>
+
+                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">View Save Cart</button>
+                        <button ng-click="saveCart()" class="btn btn-success pull-right btn-lg">Save to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Saved Cart</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                                <th>Remove</th>
+                            </tr>
+                            </thead>
+                            <tr ng-repeat="ob in obj">
+
+                                <td>{{ob.pro_name}}</td>
+                                <td>{{ob.qty}}</td>
+                                <td>{{ob.price}}</td>
+                                <td>{{ob.price * ob.qty}}</td>
+                                <td><button ng-click="removeData(ob.pro_name)" class="btn btn-warning">Remove</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button ng-click="clearData()" class="btn btn-danger pull-right">Clear Data</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!---------------modal over----------------->
+
+
+
+    </div>
+
+
+</div>
+
+
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
